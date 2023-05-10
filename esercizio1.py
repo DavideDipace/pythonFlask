@@ -5,10 +5,13 @@ app = Flask(__name__)
 
 df = pd.read_excel("https://github.com/PolisenoRiccardo/perilPopolo/blob/main/milano_housing_02_2_23.xlsx?raw=true")
 df
+
+testpoli = gpd.read_file("province2.zip") #caricare dati da drive
+testpoli
+
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    return render_template('home.html')
-
+    return render_template('test.html', table = testpoli.to_html())
 @app.route('/data', methods=['GET', 'POST'])
 def data():
     quartiere = request.args.get('quartiere')
